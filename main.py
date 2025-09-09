@@ -11,7 +11,7 @@ SEARCH_LIST = [
     {"url": "https://www.vinted.fr/vetements?search_text=nike+sweat&price_to=50", "name": "Nike sweat"},
     {"url": "https://www.vinted.fr/vetements?search_text=levi%27s+jean&price_to=60", "name": "Levi's jean"}
 ]
-CHECK_INTERVAL = 300  # en secondes (5 min)
+CHECK_INTERVAL = 120  # en secondes (2 min)
 
 # Telegram (variables secrètes dans Replit ou .env)
 BOT_TOKEN = os.getenv("BOT_TOKEN")
