@@ -18,12 +18,22 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 # -------- FONCTIONS --------
-def send_telegram_message(text):
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    payload = {"chat_id": CHAT_ID, "text": text}
+def send_telegram_message(title, photo_url, ad_url):
+    keyboard = {
+        "inline_keyboard": [
+            [{"text": "Voir l'annonce", "url": ad_url}]
+        ]
+    }
+
+    payload = {
+        "chat_id": CHAT_ID,
+        "photo": photo_url,
+        "caption": title,
+        "reply_markup": str(keyboard).replace("'", '"')
+    }
+
     try:
-        response = requests.post(url, data=payload)
-        response.raise_for_status()
+        requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendPhoto", data=payload)
     except Exception as e:
         print("Erreur en envoyant le message Telegram:", e)
 
